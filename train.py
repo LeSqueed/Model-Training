@@ -28,7 +28,7 @@ output_dir = 'F:\\Software\\Hypetrigger\\data\\tensorflow-models\\ow2-elim'
 dataset_dir = r'F:\Projects\Rust\testing\hypetrigger\output\Dataset'
 
 # If debug is set to true it will do some extra things to help you debug your model (such as saving misclassified images to the output directory)
-debug = True
+debug = False
 
 
 backup = False
@@ -98,10 +98,9 @@ def create_data_generators(combined_dir):
         batch_size=24,
         class_mode='categorical',
         subset='training',
-        # Debugging, store the images in folders
-        # save_to_dir='F:\\Projects\\Rust\\testing\\hypetrigger\\output\\Debug\\Train',
-        # save_prefix='Train',
-        # save_format='png'
+        save_to_dir=f'{output_dir}/train' if debug else None,
+        save_prefix='Train' if debug else None,
+        save_format='png' if debug else None
     )
 
     val_gen = data_gen.flow_from_directory(
@@ -182,6 +181,10 @@ def train_model(model, train_gen, val_gen):
 def main():
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
+
+    if debug:
+        if not os.path.exists(os.path.join(output_dir, 'train')):
+            os.makedirs(os.path.join(output_dir, 'train'))
 
     # Create the base model from the pre-trained model MobileNet V2
     base_model = get_base_model()
