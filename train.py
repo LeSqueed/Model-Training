@@ -83,7 +83,6 @@ def get_latest_checkpoint(checkpoint_dir):
     
 def create_data_generators(combined_dir):
     data_gen = ImageDataGenerator(
-        # preprocessing_function=resize_image,
         preprocessing_function=resize_image,
         fill_mode='nearest',
         zoom_range=0.2,
