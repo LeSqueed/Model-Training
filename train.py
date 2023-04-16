@@ -25,7 +25,7 @@ patience = 50
 output_dir = 'F:\\Software\\Hypetrigger\\data\\tensorflow-models\\ow2-elim'
 
 # Dataset directory, contains one folder per class you want to train
-dataset_dir = r'F:\Projects\Rust\testing\hypetrigger\output\Dataset'
+dataset_dir = 'F:\\Projects\\Rust\\testing\\hypetrigger\output\\Dataset'
 
 # If debug is set to true it will do some extra things to help you debug your model (such as saving misclassified images to the output directory)
 debug = False
